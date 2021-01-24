@@ -20,8 +20,8 @@ export default function ContactForm() {
       alert(`${data.name} is already in contacts`);
       return;
     }
-    dispatch(operations.addContact(data.name, data.number));
-    // dispatch(operations.addContact(data));
+
+    dispatch(operations.addContact(data));
 
     reset({ name: '', number: '' });
     console.log(data);

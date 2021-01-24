@@ -14,7 +14,6 @@ export default function ContactList() {
 
   useEffect(() => dispatch(operations.fetchContacts()), [dispatch]);
 
-  // console.log(contacts);
   return (
     <>
       {contacts.length > 0 && !error ? (
