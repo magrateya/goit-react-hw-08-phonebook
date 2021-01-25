@@ -7,7 +7,7 @@ export default class LoaderRings extends React.Component {
     return (
       <Loader
         type="Bars"
-        color="#227044"
+        color="#f1c40f"
         height={30}
         width={30}
         timeout={2000}

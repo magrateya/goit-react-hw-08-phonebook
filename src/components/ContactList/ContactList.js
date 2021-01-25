@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
 import s from './ContactList.module.css';
-import { operations, selectors } from '../../redux';
+import { operations, selectors } from '../../redux/contacts';
 import Disconnect from '../../img/disconnect.jpg';
 
 export default function ContactList() {
@@ -47,7 +47,7 @@ export default function ContactList() {
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       name: PropTypes.string,
       number: PropTypes.string,
     }),

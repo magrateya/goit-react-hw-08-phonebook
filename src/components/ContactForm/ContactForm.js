@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import s from './ContactForm.module.css';
-import { operations, selectors } from '../../redux';
+import { operations, selectors } from '../../redux/contacts';
 import Loader from '../Loader/Loader';
 
 export default function ContactForm() {

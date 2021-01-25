@@ -13,12 +13,14 @@ form {
 .formBtn {
   padding: 5px 15px;
   align-self: center;
-  border: 1px solid #227044;
+  border: 1px solid #f1c40f;
+  background-color: #000;
+  color: #fff;
 }
 .formBtn:hover {
-  background-color: #227044;
-  color: #fff;
-  border-color: #227044;
+  background-color: #f1c40f;
+  color: #000;
+  border-color: #f1c40f;
   transition: all 250ms linear;
 }
 .nameLabel,
@@ -31,7 +33,6 @@ input {
   border: 1px solid rgba(33, 33, 33, 0.2);
 }
 input:focus {
-  border: 1px solid #145a32;
   box-shadow: 1px 4px 48px 3px rgba(0, 0, 0, 0.75);
   outline: none;
 }

@@ -14,7 +14,7 @@ export default function ContactItem({ id, name, number, onDeleteContact }) {
 }
 
 ContactItem.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   name: PropTypes.string,
   number: PropTypes.string,
   onDeleteContact: PropTypes.func,

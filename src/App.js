@@ -1,16 +1,33 @@
+import { Route, Switch } from 'react-router-dom';
 import Section from './components/Section/Section';
-import ContactForm from './components/ContactForm/ContactForm';
-import ContactList from './components/ContactList/ContactList';
-import Filter from './components/Filter/Filter';
+import AppBar from './components/AppBar/AppBar';
+import HomeView from './views/HomeView';
+import PhonebookView from './views/PhonebookView';
+import RegisterView from './views/RegisterView';
+import LoginView from './views/LoginView';
 
 export default function App() {
   return (
     <Section>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
+      <AppBar />
+
+      <Switch>
+        <Route path="/" exact>
+          <HomeView />
+        </Route>
+
+        <Route path="/phonebook">
+          <PhonebookView />
+        </Route>
+
+        <Route path="/register">
+          <RegisterView />
+        </Route>
+
+        <Route path="/login">
+          <LoginView />
+        </Route>
+      </Switch>
     </Section>
   );
 }

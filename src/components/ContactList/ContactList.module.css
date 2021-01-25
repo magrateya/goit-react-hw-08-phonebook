@@ -22,11 +22,13 @@
 .contactItem button {
   padding: 5px 10px;
   min-width: 10%;
-  border: 1px solid #227044;
+  border: 1px solid #f1c40f;
+  color: #fff;
+  background-color: #000;
 }
 .contactItem button:hover {
-  background-color: #227044;
-  color: #fff;
-  border-color: #227044;
+  background-color: #f1c40f;
+  color: #000;
+  border-color: #f1c40f;
   transition: all 250ms linear;
 }
