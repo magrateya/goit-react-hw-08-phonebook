@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth';
+import s from '../components/ContactForm/ContactForm.module.css';
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -88,6 +89,7 @@ export default function ContactForm() {
         </label>
 
         <button
+          className={s.formBtn}
           type="submit"
           style={{
             padding: '5px',

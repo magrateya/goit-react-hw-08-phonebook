@@ -1,18 +1,15 @@
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
 import s from './ContactList.module.css';
 import { operations, selectors } from '../../redux/contacts';
-import Disconnect from '../../img/disconnect.jpg';
+import Disconnect from '../../img/empty.png';
 
 export default function ContactList() {
   const contacts = useSelector(selectors.getVisibleContacts);
   const error = useSelector(selectors.getError);
 
   const dispatch = useDispatch();
-
-  useEffect(() => dispatch(operations.fetchContacts()), [dispatch]);
 
   return (
     <>
@@ -36,7 +33,7 @@ export default function ContactList() {
           <img
             src={Disconnect}
             alt="disconnect"
-            style={{ maxWidth: '450px', marginTop: '20px' }}
+            style={{ maxWidth: '500px', marginTop: '20px' }}
           />
         </div>
       )}

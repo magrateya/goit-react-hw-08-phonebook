@@ -1,23 +1,29 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { authOperations } from '../redux/auth';
-import s from '../components/ContactForm/ContactForm.module.css';
+import { operations } from '../../redux/contacts';
 
-export default function ContactForm() {
+export default function ContactEditor({ id, onCloseModal }) {
   const dispatch = useDispatch();
 
   const { register, handleSubmit, errors, reset } = useForm();
 
-  const onHandleSubmit = data => {
-    dispatch(authOperations.logIn(data));
+  const onHandleSubmit = ({ name, number }) => {
+    dispatch(operations.editContact({ name, number, id }));
 
     reset({ email: '', password: '' });
-    // console.log(data);
+    console.log(id);
+    console.log(name);
   };
 
   return (
-    <div style={{ padding: '40px 0' }}>
-      <form onSubmit={handleSubmit(onHandleSubmit)}>
+    <div style={{ width: '500px' }}>
+      <form
+        onSubmit={handleSubmit(onHandleSubmit)}
+        style={{
+          margin: '0',
+          width: '60%',
+        }}
+      >
         <label
           style={{
             display: 'flex',
@@ -25,11 +31,11 @@ export default function ContactForm() {
             marginBottom: '10px',
           }}
         >
-          E-mail
+          Name
           <input
             ref={register({ required: true, maxLength: 20, minLength: 6 })}
             type="text"
-            name="email"
+            name="name"
           />
           {errors.number?.type === 'required' && (
             <span style={{ color: 'red' }}>'Your input is required'</span>
@@ -45,14 +51,14 @@ export default function ContactForm() {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            marginBottom: '10px',
+            marginBottom: '20px',
           }}
         >
-          Password
+          Number
           <input
             ref={register({ required: true, maxLength: 20, minLength: 3 })}
             type="text"
-            name="password"
+            name="number"
           />
           {errors.number?.type === 'required' && (
             <span style={{ color: 'red' }}>'Your input is required'</span>
@@ -65,17 +71,31 @@ export default function ContactForm() {
           )}
         </label>
 
-        <button
-          className={s.formBtn}
-          type="submit"
-          style={{
-            padding: '5px',
-            width: '25%',
-            alignSelf: 'center',
-          }}
-        >
-          Log in
-        </button>
+        <div>
+          <button
+            // onClick={onCloseModal}
+            type="submit"
+            style={{
+              padding: '5px',
+              width: '48%',
+              alignSelf: 'center',
+              marginRight: '10px',
+            }}
+          >
+            Edit
+          </button>
+          <button
+            onClick={onCloseModal}
+            type="submit"
+            style={{
+              padding: '5px',
+              width: '48%',
+              alignSelf: 'center',
+            }}
+          >
+            Close
+          </button>
+        </div>
       </form>
     </div>
   );
