@@ -1,6 +1,6 @@
 import './Animation.css';
 
-export default function Anime() {
+export default function Animation() {
   return (
     <>
       <div className={['background', 'background0'].join(' ')}></div>
