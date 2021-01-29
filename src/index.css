@@ -9,6 +9,11 @@ body {
   background-image: url(img/bg1.jpg);
   background-size: cover;
 }
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

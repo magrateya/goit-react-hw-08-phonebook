@@ -1,25 +1,29 @@
 import React from 'react';
-import Snake from 'react-simple-snake';
+import Animation from '../components/Amination/Animation';
 
 const styles = {
   title: {
     fontWeight: 400,
-    fontSize: 48,
+    fontSize: 30,
     textAlign: 'center',
+    letterSpacing: '10px',
+  },
+  container: {
+    position: 'relative',
+    width: '100%',
+    height: '100vh',
   },
 };
 
 const HomeView = () => (
   <div style={styles.container}>
-    <h1 style={styles.title}>
-      Welcome, to get your phonebook log in please.
+    <Animation />
+    <p style={styles.title}>
+      To get your phonebook log in please.
       <span role="img" aria-label="Иконка приветствия">
         🤘
       </span>
-    </h1>
-    <div>
-      <Snake width={400} />
-    </div>
+    </p>
   </div>
 );
 
