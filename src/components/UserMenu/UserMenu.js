@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
-import defaultAvatar from '../../img/ava.png';
+import defaultAvatar from '../../img/ava1.png';
 import s from '../ContactForm/ContactForm.module.css';
 
 const UserMenu = () => {
@@ -14,7 +14,7 @@ const UserMenu = () => {
         src={defaultAvatar}
         alt=""
         width="55"
-        style={{ marginRight: '10px' }}
+        style={{ marginRight: '10px', borderRadius: '50%' }}
       />
       <span style={{ fontWeight: 700, marginRight: 12 }}>Welcome, {name}</span>
       <button

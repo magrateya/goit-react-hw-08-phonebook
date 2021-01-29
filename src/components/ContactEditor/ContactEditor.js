@@ -11,8 +11,6 @@ export default function ContactEditor({ id, onCloseModal }) {
     dispatch(operations.editContact({ name, number, id }));
 
     reset({ email: '', password: '' });
-    console.log(id);
-    console.log(name);
   };
 
   return (

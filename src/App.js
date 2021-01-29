@@ -1,6 +1,7 @@
 import { useEffect, Suspense, lazy } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import Section from './components/Section/Section';
 import AppBar from './components/AppBar/AppBar';
 import Loader from './components/Loader/Loader';
@@ -25,7 +26,10 @@ export default function App() {
   return (
     <Section>
       {isFetchingCurrentUser ? (
-        <h1>React Sceleton</h1>
+        <SkeletonTheme color="#292928" highlightColor="#f1c40f">
+          <Skeleton height={100} />
+          <Skeleton height={500} width={500} />
+        </SkeletonTheme>
       ) : (
         <>
           <AppBar />

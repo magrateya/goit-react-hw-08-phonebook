@@ -3,7 +3,7 @@ import Snake from 'react-simple-snake';
 
 const styles = {
   title: {
-    fontWeight: 200,
+    fontWeight: 400,
     fontSize: 48,
     textAlign: 'center',
   },
@@ -14,7 +14,7 @@ const HomeView = () => (
     <h1 style={styles.title}>
       Welcome, to get your phonebook log in please.
       <span role="img" aria-label="Иконка приветствия">
-        💁‍♀️
+        🤘
       </span>
     </h1>
     <div>
