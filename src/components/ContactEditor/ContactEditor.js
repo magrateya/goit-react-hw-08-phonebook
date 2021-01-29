@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { operations } from '../../redux/contacts';
+import s from '../ContactForm/ContactForm.module.css';
 
 export default function ContactEditor({ id, onCloseModal }) {
   const dispatch = useDispatch();
@@ -69,14 +70,19 @@ export default function ContactEditor({ id, onCloseModal }) {
           )}
         </label>
 
-        <div>
+        <div
+          style={{
+            display: 'flex',
+          }}
+        >
           <button
             // onClick={onCloseModal}
+            className={s.formBtn}
             type="submit"
             style={{
               padding: '5px',
               width: '48%',
-              alignSelf: 'center',
+
               marginRight: '10px',
             }}
           >
@@ -85,10 +91,10 @@ export default function ContactEditor({ id, onCloseModal }) {
           <button
             onClick={onCloseModal}
             type="submit"
+            className={s.formBtn}
             style={{
               padding: '5px',
               width: '48%',
-              alignSelf: 'center',
             }}
           >
             Close
