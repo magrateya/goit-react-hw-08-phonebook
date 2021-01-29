@@ -12,7 +12,6 @@ export default function ContactForm() {
     dispatch(authOperations.logIn(data));
 
     reset({ email: '', password: '' });
-    // console.log(data);
   };
 
   return (

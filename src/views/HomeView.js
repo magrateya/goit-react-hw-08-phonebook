@@ -3,7 +3,7 @@ import Animation from '../components/Amination/Animation';
 
 const styles = {
   title: {
-    fontWeight: 400,
+    fontWeight: 500,
     fontSize: 30,
     textAlign: 'center',
     letterSpacing: '10px',
