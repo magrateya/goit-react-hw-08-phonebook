@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { authOperations } from '../redux/auth';
+import { useSelector, useDispatch } from 'react-redux';
+import { authOperations, authSelectors } from '../redux/auth';
 import s from '../components/ContactForm/ContactForm.module.css';
 
 export default function ContactForm() {
   const dispatch = useDispatch();
+  const error = useSelector(authSelectors.getError);
 
   const { register, handleSubmit, errors, reset } = useForm();
 
@@ -25,19 +26,9 @@ export default function ContactForm() {
           }}
         >
           E-mail
-          <input
-            ref={register({ required: true, maxLength: 20, minLength: 6 })}
-            type="text"
-            name="email"
-          />
-          {errors.number?.type === 'required' && (
+          <input ref={register({ required: true })} type="text" name="email" />
+          {errors.email?.type === 'required' && (
             <span style={{ color: 'red' }}>'Your input is required'</span>
-          )}
-          {errors.number?.type === 'maxLength' && (
-            <span style={{ color: 'red' }}>'Your input is too long'</span>
-          )}
-          {errors.number?.type === 'minLength' && (
-            <span style={{ color: 'red' }}>'Your input is too short'</span>
           )}
         </label>
         <label
@@ -49,18 +40,12 @@ export default function ContactForm() {
         >
           Password
           <input
-            ref={register({ required: true, maxLength: 20, minLength: 3 })}
+            ref={register({ required: true })}
             type="text"
             name="password"
           />
-          {errors.number?.type === 'required' && (
+          {errors.password?.type === 'required' && (
             <span style={{ color: 'red' }}>'Your input is required'</span>
-          )}
-          {errors.number?.type === 'maxLength' && (
-            <span style={{ color: 'red' }}>'Your input is too long'</span>
-          )}
-          {errors.number?.type === 'minLength' && (
-            <span style={{ color: 'red' }}>'Your input is too short'</span>
           )}
         </label>
 
@@ -76,6 +61,11 @@ export default function ContactForm() {
           Log in
         </button>
       </form>
+      {error && (
+        <p style={{ color: 'red' }}>
+          {error.message} - something went wrong try again.
+        </p>
+      )}
     </div>
   );
 }

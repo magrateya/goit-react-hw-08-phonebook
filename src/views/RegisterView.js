@@ -1,12 +1,24 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { authOperations } from '../redux/auth';
+import { useSelector, useDispatch } from 'react-redux';
+import { authOperations, authSelectors } from '../redux/auth';
 import s from '../components/ContactForm/ContactForm.module.css';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+  name: yup.string().min(4).required(),
+  email: yup.string().email(),
+  password: yup.string().min(6).required(),
+});
 
 export default function ContactForm() {
   const dispatch = useDispatch();
+  const error = useSelector(authSelectors.getError);
 
-  const { register, handleSubmit, errors, reset } = useForm();
+  const { register, handleSubmit, errors, reset } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const onHandleSubmit = data => {
     dispatch(authOperations.register(data));
@@ -18,74 +30,34 @@ export default function ContactForm() {
   return (
     <div style={{ padding: '40px 0' }}>
       <form onSubmit={handleSubmit(onHandleSubmit)}>
-        <label
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            marginBottom: '10px',
-          }}
-        >
+        <label className={s.nameLabel} style={{ marginBottom: '0' }}>
           Name
           <input
             ref={register({ required: true, maxLength: 20, minLength: 2 })}
             type="text"
             name="name"
           />
-          {errors.name?.type === 'required' && (
-            <span style={{ color: 'red' }}>'Your input is required'</span>
-          )}
-          {errors.name?.type === 'maxLength' && (
-            <span style={{ color: 'red' }}>'Your input is too long'</span>
-          )}
-          {errors.name?.type === 'minLength' && (
-            <span style={{ color: 'red' }}>'Your input is too short'</span>
-          )}
+          <p style={{ color: 'red', margin: '0' }}>{errors.name?.message}</p>
         </label>
-        <label
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            marginBottom: '10px',
-          }}
-        >
+        <label className={s.nameLabel}>
           E-mail
           <input
             ref={register({ required: true, maxLength: 20, minLength: 6 })}
             type="text"
             name="email"
           />
-          {errors.number?.type === 'required' && (
-            <span style={{ color: 'red' }}>'Your input is required'</span>
-          )}
-          {errors.number?.type === 'maxLength' && (
-            <span style={{ color: 'red' }}>'Your input is too long'</span>
-          )}
-          {errors.number?.type === 'minLength' && (
-            <span style={{ color: 'red' }}>'Your input is too short'</span>
-          )}
+          <p style={{ color: 'red', margin: '0' }}>{errors.email?.message}</p>
         </label>
-        <label
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            marginBottom: '10px',
-          }}
-        >
+        <label className={s.nameLabel}>
           Password
           <input
             ref={register({ required: true, maxLength: 20, minLength: 3 })}
             type="text"
             name="password"
           />
-          {errors.number?.type === 'required' && (
-            <span style={{ color: 'red' }}>'Your input is required'</span>
-          )}
-          {errors.number?.type === 'maxLength' && (
-            <span style={{ color: 'red' }}>'Your input is too long'</span>
-          )}
-          {errors.number?.type === 'minLength' && (
-            <span style={{ color: 'red' }}>'Your input is too short'</span>
-          )}
+          <p style={{ color: 'red', margin: '0' }}>
+            {errors.password?.message}
+          </p>
         </label>
 
         <button
@@ -100,6 +72,11 @@ export default function ContactForm() {
           Log in
         </button>
       </form>
+      {error && (
+        <p style={{ color: 'red' }}>
+          {error.message} - something went wrong try again.
+        </p>
+      )}
     </div>
   );
 }
