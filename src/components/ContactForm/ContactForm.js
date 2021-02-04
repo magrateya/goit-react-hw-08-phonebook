@@ -1,15 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import s from './ContactForm.module.css';
 import { operations, selectors } from '../../redux/contacts';
 import Loader from '../Loader/Loader';
+import NumberFormat from 'react-number-format';
 
 export default function ContactForm() {
   const contacts = useSelector(selectors.getItems);
   const loading = useSelector(selectors.getLoading);
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, errors, reset } = useForm();
+  const { register, handleSubmit, errors, reset, control } = useForm();
 
   const onHandleSubmit = data => {
     if (
@@ -20,11 +21,14 @@ export default function ContactForm() {
       alert(`${data.name} is already in contacts`);
       return;
     }
-
+    if (data.number.length < 9) {
+      alert(`${data.number} must be 7 numbers`);
+      return;
+    }
     dispatch(operations.addContact(data));
 
     reset({ name: '', number: '' });
-    console.log(data);
+    console.log(data.number.length);
   };
 
   return (
@@ -49,10 +53,13 @@ export default function ContactForm() {
         </label>
         <label className={s.nameLabel}>
           Number
-          <input
-            ref={register({ required: true, maxLength: 20, minLength: 7 })}
+          <Controller
+            as={NumberFormat}
+            // ref={register({ required: true, maxLength: 20, minLength: 7 })}
             type="text"
             name="number"
+            control={control}
+            format="###-##-##"
           />
           {errors.number?.type === 'required' && (
             <span style={{ color: 'red' }}>'Your input is required'</span>
